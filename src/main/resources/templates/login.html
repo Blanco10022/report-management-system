@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tymeleaf.org">
+
+  <head>
+
+    <meta charset="UTF-8" />
+    
+         <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous">
+    
+    </script>
+    <title>Connexion et Inscription</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        nav {
+        display: inline-block;
+        margin: 0 auto;
+       
+      }
+      nav ul {
+        list-style: none;
+        margin-left: 19%;
+        display: flex;
+      }
+      nav li {
+        margin-right: 10px;
+        font-weight:normal;
+        font-family: sans-serif;
+  
+        
+        
+      }
+      nav a {
+        text-decoration: none;
+        
+        font-weight: bold;
+        font-size: 18px;
+        transition: color 0.3s ease;
+      }
+      #navi :hover{
+
+        color: rgb(255, 255, 255);
+      }
+      .nav-link:hover:not(.navbar-brand){
+        background-color: #c00;
+        opacity: 0.8;
+        
+      }
+      .nav-link:hover:not(.navbar-brand){
+        border-radius: 20px;
+        
+      }
+      #logo {
+        display: inline-block;
+        width: 150x;
+		height: 80px;
+        margin-right: 100px
+      
+      }
+      
+    #navi2{
+       
+        border-radius: 20px ; 
+       
+          color: white;
+         /*  background-color: #c00 ;
+        color: white;
+        border-radius: 20px ; 
+        font-family: sans-serif;
+      font-family: 'Courier New', Courier, monospace; */
+     
+       
+        margin-left: 15%;
+ 
+    }
+        #navi2 :hover{
+
+    color:black
+    }
+    .container{
+      border-radius:10px
+     
+    }
+   section{
+     /*margin-top:2%;*/
+      background-color: #625d5d72;
+      border-radius: 10%;
+     
+   }
+   body {
+  background-color:  #ffffff72;
+
+}
+.btn{
+border-radius : 60px;
+border : none;
+  color: #fff;
+outline: none;
+background-color:   #c00;
+}
+
+    
+ </style>
+    
+  </head>
+  
+  <body>
+  
+  <section>
+        <div class="container2" >
+                 <div class="row1">
+                       <div class="col-md-12">   
+                            <nav  class="navbar navbar-expand-md navbar-light bg-transparent" >
+                                <img src="images/logo__5_rbg.png" id="logo" alt="Your logo">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav" id="navi">
+                                    <li class="nav-item ">
+                                    <a class="nav-link" href="/" style="color: black;font-weight: normal;"><b>Acceuil</b></a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="" style="color: black;font-weight: normal"><b>Rapport</b></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="" style="color: black;font-weight: normal" ><b>Utilisateur</b></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="login" style="color: black;font-weight: normal" ><b>Connexion</b></a>
+<!-- the href was signin i changed to login -->
+
+                                    </li>
+                                </div>
+                                <a id="navi2" ><img  src="images/LAF.png" alt="" style="width: 280px; height: 80px;"></a>   
+                            </nav>  
+                       </div>
+                 </div>
+         </div>
+      </section>
+
+   
+   
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+              
+          <form action="/login" method="post" class="sign-in-form">
+          
+           <div th:if="${param.error}" class="alert alert-danger">Email & Mot_de_passe incorrect
+   </div>
+   
+   <div th:if="${param.logout}" class="alert alert-success">Logout Sucessfully
+   </div>
+   
+            <h2 class="title">Connexion</h2>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="text" placeholder="Email" name= "username"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Mot de passe" name= "password"/>
+            </div>
+            <input type="submit" value="Connexion" class="btn solid" />
+          </form>
+          
+          
+          <form action="createUser" method="post" class="sign-up-form">
+            <h2 class="title">Inscription</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Nom d'utilisateur" name="fullname"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="text" placeholder="Email" name="email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Mot de passe" name="password" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Poste (Employer ou Chef)" name="poste"  />
+            </div>
+            <input type="submit" class="btn" value="Inscription" />
+          </form>
+        </div>
+      </div>
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>Nouveau ici ?</h3>
+            <p>
+              Cliquer pour vous diriger vers la page d'inscription
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Inscription
+            </button>
+          </div>
+          <img src="images/LAF.png" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Déjà inscrit ?</h3>
+            <p>
+              Cliquer pour vous diriger vers la page de connexion
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Connexion
+            </button>
+          </div>
+          <img src="images/rr.png" class="image" alt="" style="width: 200px; height: 180px;"/>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="app.js"></script> -->
+
+    <script>
+      const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-up-mode");
+    });
+
+    sign_in_btn.addEventListener("click", () => {
+      container.classList.remove("sign-up-mode");
+    });
+
+    </script>
+     </section>
+  </body>
+ 
+</html>

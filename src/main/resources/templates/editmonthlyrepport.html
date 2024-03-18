@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/style/index.css">
+<link rel="stylesheet" type="text/css" href="/style/home.css">
+<script src="/style/home.js"></script>
+<script src="/style/toggle.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src=https://kit.fontawesome.com/35c8510a19.js
+	crossorigin="anonymous"></script>
+
+
+
+<title>MODIFIE RAPPORT</title>
+
+<style>
+</style>
+
+<header>
+	<div class="wrapper">
+
+
+		<div class="sidebar">
+			<ul>
+
+				<div class="logo" style="width: 18%;">
+
+
+
+					<img src="/images/logo2.png" alt="Logo">
+				</div>
+				<!-- <li><a href="#"><i class="fas fa-home"></i> Home </a></li> -->
+				<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+				<li><a href="/user/"><i class="fas fa-plus"></i>Creé
+						Rapport</a></li>
+
+				<li><a href="/list"><i class="fas fa-chart-simple"
+						style="padding-top: 19px;"></i>Rapport envoyés</a></li>
+				<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+				<li><a href="/weeklylist"><i class="fas fa-file"></i>Rapport
+						Hebdo</a></li>
+				<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+				<li><a href="/monthlylist"><i class="fas fa-file"></i>Rapport
+						Mensuel</a></li>
+				<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+				<li><a href="#"><i class="fas fa-file-alt"></i>Brouillons</a></li>
+				<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+				<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+				<li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Deconnexion</a></li>
+
+				<!-- <li><a href="#"><i class="fas fa-right-to-bracket"></i>Login</a></li>
+            <li><a href="#"><i class="fas fa-user-plus"></i>Register</a></li> -->
+			</ul>
+
+		</div>
+
+	</div>
+
+</header>
+</head>
+
+<body>
+
+
+
+	<div class="container">
+		<form th:action="@{/updatemonth}" method="post"
+			th:object="${monthlylist}">
+
+			<input type="hidden" th:value="${monthlylist?.id ?: 'Default ID'}"
+				name="id">
+
+			<div id="title0" class="contrle"
+				style="display: flex; align-items: center;">
+				<input type="text" name="unite" class="textfield"
+					style="margin-right: 10px;" placeholder="Unité"
+					th:if="${monthlylist.unite != null}"
+					th:value="${monthlylist.unite}"> <select
+					class="dropdownlist" style="margin-right: 10px;" name="month">
+					<option value="mois" th:selected="${monthlylist.month == 'mois'}">mois</option>
+					<option value="Janvier"
+						th:selected="${monthlylist.month == 'Janvier'}">Janvier</option>
+					<option value="Fevrier"
+						th:selected="${monthlylist.month == 'Fevrier'}">Fevrier</option>
+					<option value="Mars" th:selected="${monthlylist.month == 'Mars'}">Mars</option>
+					<option value="Avril" th:selected="${monthlylist.month == 'Avril'}">Avril</option>
+					<option value="Mais" th:selected="${monthlylist.month == 'Mais'}">Mais</option>
+					<option value="Juin" th:selected="${monthlylist.month == 'Juin'}">Juin</option>
+					<option value="Juillet"
+						th:selected="${monthlylist.month == 'Juillet'}">Juillet</option>
+					<option value="Aout" th:selected="${monthlylist.month == 'Aout'}">Aout</option>
+					<option value="Septembre"
+						th:selected="${monthlylist.month == 'Septembre'}">Septembre</option>
+					<option value="Octobre"
+						th:selected="${monthlylist.month == 'Octobre'}">Octobre</option>
+					<option value="Novembre"
+						th:selected="${monthlylist.month == 'Novembre'}">Novembre</option>
+					<option value="Decembre"
+						th:selected="${monthlylist.month == 'Decembre'}">Decembre</option>
+				</select> <input type="text" class="textfield" placeholder="Enter Name"
+					style="width: 600px;" name="name" th:value="${monthlylist.name}">[[${monthlylist.name}]]
+			</div>
+
+			<div id="title" class="contrle"
+				style="padding-left: 13px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+				Contrôle
+				<button type="button" class="toggle-btn">
+					<i class="fas fa-chevron-down"></i>
+				</button>
+				<button type="button"
+					style="margin-left: 651px; white-space: nowrap;" class="add-button">+
+					Nouvelle Entré</button>
+			</div>
+
+			<div class="user-forms" style="margin-top: 15px;">
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">PLANIFIE?</div>
+						<select class="dropdown" name="controlePlanifie">
+							<option value="oui"
+								th:selected="${monthlylist.controlePlanifie == 'oui'}">OUI</option>
+							<option value="non"
+								th:selected="${monthlylist.controlePlanifie == 'non'}">NON</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">STATUT ACTIVITES</div>
+						<input type="text" class="input-field"
+							name="controleStatutActivites" placeholder="Entrer le statut"
+							th:value="${monthlylist.controleStatutActivites}" />
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">TACHES</div>
+						<div class="textarea-container">
+							<textarea class="textarea-field" name="controleTaches"
+								placeholder="Entrer la Tache"
+								th:placeholder="${monthlylist.controleTaches}"
+								th:text="${monthlylist.controleTaches}"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">NOMBRE/TOTAL</div>
+						<input type="number" class="input-field"
+							name="controleNombreTotal" placeholder="Entre le nombre"
+							th:value="${monthlylist.controleNombreTotal}" />
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">STATUT TACHES</div>
+						<select class="dropdown" name="controleStatutTaches">
+							<option value=""></option>
+							<option value="Exécuté"
+								th:selected="${monthlylist.controleStatutTaches == 'Exécuté'}">Exécuté</option>
+							<option value="Non-Exécuté"
+								th:selected="${monthlylist.controleStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+							<option value="En cours"
+								th:selected="${monthlylist.controleStatutTaches == 'En cours'}">En
+								cours</option>
+							<!-- Add more options here -->
+						</select>
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">DATE BUTOIR</div>
+						<input type="date" class="input-field" name="controleDateButoir"
+							th:value="${monthlylist.controleDateButoir}" />
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">STATUT DELAI</div>
+						<select class="dropdown" name="controleStatutDelai">
+							<option value=""
+								th:selected="${monthlylist.controleStatutDelai == ''}"></option>
+							<option value="Délai Dépassé"
+								th:selected="${monthlylist.controleStatutDelai == 'Délai Dépassé'}">Délai
+								Dépassé</option>
+							<option value="En cours"
+								th:selected="${monthlylist.controleStatutDelai == 'En cours'}">En
+								cours</option>
+							<!-- Add more options here -->
+						</select>
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">OBSERVATION</div>
+						<div class="textarea-container">
+							<textarea class="textarea-field" placeholder="Entre observation"
+								name="controleObservation"
+								th:text="${monthlylist.controleObservation}"></textarea>
+						</div>
+					</div>
+
+				</div>
+			</div>
+	</div>
+	</div>
+
+
+
+	<div id="title2" class="contrle"
+		style="padding-left: 13px; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Maintenance
+		<button type="button" class="toggle-btn2">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 599px; white-space: nowrap;"
+			class="add-button2">+ Nouvelle Entré</button>
+	</div>
+	<div class="user-forms2" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">PLANIFIE?</div>
+						<select class="dropdown" name="maintenancePlanifie">
+							<option value="oui"
+								th:selected="${monthlylist.maintenancePlanifie == 'oui'}">OUI</option>
+							<option value="non"
+								th:selected="${monthlylist.maintenancePlanifie == 'non'}">NON</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field"
+					placeholder="Entrer le statut" name="maintenanceStatutActivites"
+					th:value="${monthlylist.maintenanceStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" name="maintenanceTaches"
+						placeholder="Entrer la Tache"
+						th:text="${monthlylist.maintenanceTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field"
+					placeholder="Entre le nombre" name="maintenanceNombreTotal"
+					th:value="${monthlylist.maintenanceNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="maintenanceStatutTaches">
+					<option value=""
+						th:selected="${monthlylist.maintenanceStatutTaches == ''}"></option>
+					<option value="Exécuté"
+						th:selected="${monthlylist.maintenanceStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${monthlylist.maintenanceStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours"
+						th:selected="${monthlylist.maintenanceStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="maintenanceDateButoir"
+					th:value="${monthlylist.maintenanceDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="maintenanceStatutDelai">
+					<option value=""></option>
+					<option value="Délai Dépassé"
+						th:selected="${monthlylist.maintenanceStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours"
+						th:selected="${monthlylist.maintenanceStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation"
+						name="maintenanceObservation"
+						th:text="${monthlylist.maintenanceObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	</div>
+
+	<div id="title3" class="contrle"
+		style="padding-left: 13px; white-space: nowrap; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Contribution dans les Projets
+		<button type="button" class="toggle-btn3">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 396px; white-space: nowrap;"
+			class="add-button3">+ Nouvelle Entré</button>
+	</div>
+
+	<div class="user-forms3" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="contributionProjetsPlanifie"
+					th:value="${monthlylist.contributionProjetsPlanifie}">
+					<option value="oui"
+						th:selected="${monthlylist.contributionProjetsPlanifie == 'oui'}">OUI</option>
+					<option value="non"
+						th:selected="${monthlylist.contributionProjetsPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field"
+					placeholder="Entrer le statut"
+					name="contributionProjetsStatutActivites"
+					th:value="${monthlylist.contributionProjetsStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache"
+						name="contributionProjetsTaches"
+						th:text="${monthlylist.contributionProjetsTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field"
+					placeholder="Entre le nombre" name="contributionProjetsNombreTotal"
+					th:value="${monthlylist.contributionProjetsNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="contributionProjetsStatutTaches"
+					th:value="${monthlylist.contributionProjetsStatutTaches}">
+					<option value=""
+						th:selected="${monthlylist.contributionProjetsStatutTaches == ''}"></option>
+					<option value="Exécuté"
+						th:selected="${monthlylist.contributionProjetsStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${monthlylist.contributionProjetsStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours"
+						th:selected="${monthlylist.contributionProjetsStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field"
+					name="contributionProjetsDateButoir"
+					th:value="${monthlylist.contributionProjetsDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="contributionProjetsStatutDelai"
+					th:value="${monthlylist.contributionProjetsStatutDelai}">
+					<option value=""
+						th:selected="${monthlylist.contributionProjetsStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${monthlylist.contributionProjetsStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours"
+						th:selected="${monthlylist.contributionProjetsStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation"
+						name="contributionProjetsObservation"
+						th:text="${monthlylist.contributionProjetsObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="title4" class="contrle"
+		style="padding-left: 13px; white-space: nowrap;; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Support Utilisateur
+		<button type="button" class="toggle-btn4">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 519px; white-space: nowrap;"
+			class="add-button4">+ Nouvelle Entré</button>
+	</div>
+
+	<div class="user-forms4" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="supportUtilisateursPlanifie"
+					th:value="${monthlylist.supportUtilisateursPlanifie}">
+					<option value="oui"
+						th:selected="${monthlylist.supportUtilisateursPlanifie == 'oui'}">OUI</option>
+					<option value="non"
+						th:selected="${monthlylist.supportUtilisateursPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field"
+					placeholder="Entrer le statut"
+					name="supportUtilisateursStatutActivites"
+					th:value="${monthlylist.supportUtilisateursStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache"
+						name="supportUtilisateursTaches"
+						th:text="${monthlylist.supportUtilisateursTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field"
+					placeholder="Entre le nombre" name="supportUtilisateursNombreTotal"
+					th:value="${monthlylist.supportUtilisateursNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="supportUtilisateursStatutTaches"
+					th:value="${monthlylist.supportUtilisateursStatutTaches}">
+					<option value=""
+						th:selected="${monthlylist.supportUtilisateursStatutTaches == ''}"></option>
+					<option value="Exécuté"
+						th:selected="${monthlylist.supportUtilisateursStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${monthlylist.supportUtilisateursStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours"
+						th:selected="${monthlylist.supportUtilisateursStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field"
+					name="supportUtilisateursDateButoir"
+					th:value="${monthlylist.supportUtilisateursDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="supportUtilisateursStatutDelai"
+					th:value="${monthlylist.supportUtilisateursStatutDelai}">
+					<option value=""
+						th:selected="${monthlylist.supportUtilisateursStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${monthlylist.supportUtilisateursStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours"
+						th:selected="${monthlylist.supportUtilisateursStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation"
+						name="supportUtilisateursObservation"
+						th:text="${monthlylist.supportUtilisateursObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="title5" class="contrle"
+		style="padding-left: 13px; white-space: nowrap; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Support Partenaires
+		<button type="button" class="toggle-btn5">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 516px; white-space: nowrap;"
+			class="add-button5">+ Nouvelle Entrée</button>
+	</div>
+
+	<div class="user-forms5" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="heading">PLANIFIE?</div>
+			<select class="dropdown" name="supportPartenairesPlanifie"
+				th:value="${monthlylist.supportPartenairesPlanifie}">
+				<option value="oui"
+					th:selected="${monthlylist.supportPartenairesPlanifie == 'oui'}">OUI</option>
+				<option value="non"
+					th:selected="${monthlylist.supportPartenairesPlanifie == 'non'}">NON</option>
+			</select>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field"
+					placeholder="Entrer le statut"
+					name="supportPartenairesStatutActivites"
+					th:value="${monthlylist.supportPartenairesStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache"
+						name="supportPartenairesTaches"
+						th:text="${monthlylist.supportPartenairesTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field"
+					placeholder="Entre le nombre" name="supportPartenairesNombreTotal"
+					th:value="${monthlylist.supportPartenairesNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="supportPartenairesStatutTaches"
+					th:value="${monthlylist.supportPartenairesStatutTaches}">
+					<option value=""
+						th:selected="${monthlylist.supportPartenairesStatutTaches == ''}"></option>
+					<option value="Exécuté"
+						th:selected="${monthlylist.supportPartenairesStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${monthlylist.supportPartenairesStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours"
+						th:selected="${monthlylist.supportPartenairesStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field"
+					name="supportPartenairesDateButoir"
+					th:value="${monthlylist.supportPartenairesDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="supportPartenairesStatutDelai"
+					th:value="${monthlylist.supportPartenairesStatutDelai}">
+					<option value=""
+						th:selected="${monthlylist.supportPartenairesStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${monthlylist.supportPartenairesStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours"
+						th:selected="${monthlylist.supportPartenairesStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer observation"
+						name="supportPartenairesObservation"
+						th:text="${monthlylist.supportPartenairesObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+	<div id="title6" class="contrle"
+		style="margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Reporting
+		<button type="button" class="toggle-btn6">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 646px; white-space: nowrap;"
+			class="add-button6">+ Nouvelle Entrée</button>
+	</div>
+
+	<div class="user-forms6" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="reportingPlanifie"
+					th:value="${monthlylist.reportingPlanifie}">
+					<option value="oui"
+						th:selected="${monthlylist.reportingPlanifie == 'oui'}">OUI</option>
+					<option value="non"
+						th:selected="${monthlylist.reportingPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field"
+					placeholder="Entrer le statut" name="reportingStatutActivites"
+					th:value="${monthlylist.reportingStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache"
+						name="reportingTaches" th:text="${monthlylist.reportingTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field"
+					placeholder="Entre le nombre" name="reportingNombreTotal"
+					th:value="${monthlylist.reportingNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="reportingStatutTaches"
+					th:value="${monthlylist.reportingStatutTaches}">
+					<option value=""
+						th:selected="${monthlylist.reportingStatutTaches == ''}"></option>
+					<option value="Exécuté"
+						th:selected="${monthlylist.reportingStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${monthlylist.reportingStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours"
+						th:selected="${monthlylist.reportingStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="reportingDateButoir"
+					th:value="${monthlylist.reportingDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="reportingStatutDelai"
+					th:value="${monthlylist.reportingStatutDelai}">
+					<option value=""
+						th:selected="${monthlylist.reportingStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${monthlylist.reportingStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours"
+						th:selected="${monthlylist.reportingStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer observation"
+						name="reportingObservation"
+						th:text="${monthlylist.reportingObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	</div>
+
+
+	<div id="title7" class="contrle"
+		style="margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Autres
+		<button type="button" class="toggle-btn7">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 684px; white-space: nowrap;"
+			class="add-button7">+ Nouvelle Entrée</button>
+	</div>
+
+	<div class="user-forms7" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="autresPlanifie"
+					th:value="${monthlylist.autresPlanifie}">
+					<option value="oui"
+						th:selected="${monthlylist.autresPlanifie == 'oui'}">OUI</option>
+					<option value="non"
+						th:selected="${monthlylist.autresPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field"
+					placeholder="Entrer le statut" name="autresStatutActivites"
+					th:value="${monthlylist.autresStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache"
+						name="autresTaches" th:text="${monthlylist.autresTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field"
+					placeholder="Entre le nombre" name="autresNombreTotal"
+					th:value="${monthlylist.autresNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="autresStatutTaches"
+					th:value="${monthlylist.autresStatutTaches}">
+					<option value=""
+						th:selected="${monthlylist.autresStatutTaches == ''}"></option>
+					<option value="Exécuté"
+						th:selected="${monthlylist.autresStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${monthlylist.autresStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours"
+						th:selected="${monthlylist.autresStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="autresDateButoir"
+					th:value="${monthlylist.autresDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="autresStatutDelai"
+					th:value="${monthlylist.autresStatutDelai}">
+					<option value=""
+						th:selected="${monthlylist.autresStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${monthlylist.autresStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours"
+						th:selected="${monthlylist.autresStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation"
+						name="autresObservation"
+						th:text="${monthlylist.autresObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+	<input type="submit" value="METRE A JOUR" id="submit" class="btn solid" />
+	</form>
+	</div>
+	</div>
+	</div>
+
+
+	<script>
+		$(document).ready(function() {
+
+			// Hide all content panels by default
+			//$('.user-forms').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+
+			});
+		});
+
+		$(document).ready(function() {
+			// Hide all content panels by default
+			$('.user-forms2').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn2').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms2').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function() {
+			// Hide all content panels by default
+			$('.user-forms3').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn3').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms3').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function() {
+			// Hide all content panels by default
+			$('.user-forms4').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn4').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms4').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function() {
+			// Hide all content panels by default
+			$('.user-forms5').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn5').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms5').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function() {
+			// Hide all content panels by default
+			$('.user-forms6').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn6').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms6').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function() {
+			// Hide all content panels by default
+			$('.user-forms7').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn7').click(function() {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms7').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+	</script>
+
+</body>
+
+</html>

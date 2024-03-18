@@ -1,0 +1,126 @@
+body{
+      
+      
+}
+.container {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding-left: 20px;
+margin-left: 150px;
+
+}
+
+
+.user-forms {
+display: flex;
+flex-wrap: wrap;
+}
+.user-forms2 ,.user-forms3,.user-forms4,.user-forms5,.user-forms6,.user-forms7{
+display: flex;
+flex-wrap: wrap;
+}
+
+.input-section {
+display: flex;
+flex-direction: column;
+border: 1px solid #ccc;
+padding: 10px;
+margin-right: 1Zpx;
+margin-bottom: 10px;
+margin-top: 5px;
+}
+
+.heading {
+margin-bottom: 5px;
+}
+
+.input-field,
+.textarea-field,
+.dropdown {
+
+padding: 5px;
+
+
+}
+
+.add-button, .add-button2,.add-button3,.add-button4,.add-button5,.add-button6,.add-button7{
+margin-top: 15px;
+background-color: red;
+outline: none;
+border: none;
+border-radius: 5px;
+color: rgb(254, 254, 254);
+width: fit-content;
+font-size: large;
+font-family: 'Times New Roman', Times, serif;
+}
+
+.toggle-btn,.toggle-btn2,.toggle-btn3,.toggle-btn4,.toggle-btn5,.toggle-btn6,.toggle-btn7{
+ margin-top: 1px;
+ margin-left: 15px;
+background-color: red;
+outline: none;
+border: none;
+border-radius: 5px;
+color: rgb(254, 254, 254);
+width: fit-content;
+font-size: large;
+font-family: 'Times New Roman', Times, serif;
+}
+
+.input-section {
+position: relative;
+margin-bottom: 0px;
+border-radius: 20px;
+flex-shrink: 0px;
+
+}
+
+.heading {
+display: inline-block;
+align-content: center;
+background-color: red;
+color: white;
+padding: 5px 10px;
+border-radius: 5px;
+margin-bottom: 5px;
+width: fit-content;
+}
+
+.input-container {
+display: flex;
+flex-direction: column;
+}
+
+.textarea-field {
+width: 492px;
+padding-left: 40px
+}
+
+.input-field {
+
+width: fit-content; /* Fix the width of input fields */
+padding-left: 40px;
+}
+#title , #title2, #title3 , #title4, #title5 , #title6, #title7{
+background-color: rgb(59, 64, 64);
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+color: white;
+margin-right: 8%;
+
+}
+#title.expanded {
+  width: 100%;
+}
+
+
+.navbar {
+  background-color: #333;
+  height: 100vh;
+  width: 150px;
+  position: fixed;
+  margin-right: 550px;
+}
+

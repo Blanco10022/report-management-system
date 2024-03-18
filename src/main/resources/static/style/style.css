@@ -1,0 +1,180 @@
+@charset "ISO-8859-1";
+
+*{
+	font-family:roboto;
+	
+}
+  
+      /* CSS styles for the header elements */
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+		border-radius: 2%;
+		margin-top: 4%;
+		background-color: #ffffff8b;
+  
+		
+      }
+      #logo {
+        display: inline-block;
+        width: 200px;
+		height: 100px;
+      }
+      nav {
+        display: inline-block;
+        margin: 0 auto;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      nav li {
+        margin-right: 20px;
+      }
+      nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        font-size: 18px;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        /*color: #c00;*/
+         color: #c00;
+      }
+      #create-btn {
+        display: inline-block;
+        background-color: #c00;
+        color: #ffffff;
+        padding: 10px 20px;
+		position: right;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+		align-items: end;
+      }
+      #create-btn:hover {
+/*         background-color: #900;
+ */		        background-color: red;
+		
+      }
+      #header-heading {
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 50px;
+      }
+      #hero-btn {
+        display: inline-block;
+        background-color: #c00;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      #hero-btn:hover {
+/*         background-color: #900;
+ */            background-color: red;
+ 
+   }
+	  #checklist{
+		padding-top: 80px;
+		padding-left:  60px; 
+		font-family:roboto
+	  }
+     
+      #checklist ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      #checklist li {
+        margin-bottom: 1px;
+        padding-left: 30px;
+        position: relative;
+        line-height: 1.5;
+      }
+      #checklist li:before {
+        content: "\2713";
+        /* color: #c00; */
+        color:red;
+        font-size: 24px;
+        position: absolute;
+        left: 0;
+        top: 2px;
+      }
+      #image-div {
+        flex: 1;
+        text-align: right;
+      }
+      #image-div img {
+        max-width: 100%;
+        height: auto;
+      }
+	  #header-heading {
+  display: flex;
+  align-items: center;
+}
+
+	#text-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	}
+
+	h3 {
+	margin: 0;
+	}
+
+	#hero-btn {
+	margin-top: 1rem;
+	font-size:20px
+	}
+
+	#image-div {
+	margin-left: 2rem;
+	flex-shrink: 0;
+	}
+
+	img {
+	width: 100%;
+	height: auto;
+	display: block;
+	float: right;
+	}
+
+	#header-heading2 {
+	display: flex;
+	align-items: center;
+	font-style: normal;
+    font-weight:normal;
+	border-radius: 2%;
+	background-color: #ffffff8b;
+
+	}
+
+	#text {
+	
+		width: calc(100% - 400px); /* adjust width as needed */
+	}
+	
+	#text1 {
+	
+	width: calc(100% - 300px); /* adjust width as needed */
+	}
+	body {
+  background-image: url("/images/bg.jpg");
+  background-repeat: repeat;
+  background-size: 4% 3%;
+   overflow-x: hidden;
+
+}

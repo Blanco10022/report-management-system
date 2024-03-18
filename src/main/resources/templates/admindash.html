@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Authentication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/35c8510a19.js" crossorigin="anonymous"></script>
+    
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="path/to/jquery-x.x.x.min.js"></script>
+  <!-- My CSS -->
+	<link rel="stylesheet" type="text/css" href="style/admin.css">
+	
+
+  <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+#authentication-container {
+  text-align: center;
+  margin-top: 200px;
+}
+
+#code-input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+#submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+#content-container {
+  text-align: center;
+ 
+}
+
+ .todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    word-wrap: break-word;
+}
+
+.todo-list li p {
+    margin: 0;
+}
+
+.todo-list li i {
+    color: red;
+    cursor: pointer;
+}
+
+
+ 
+
+  </style>
+</head>
+<body>
+  
+  
+    <!-- Your main content goes here -->
+ <!-- SIDEBAR -->
+ <section id="sidebar">
+    <a href="" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">AdminHub</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="active">
+            <a href="admindash">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Tableau De Bord</span>
+            </a>
+        </li>
+        <li>
+            <a href="employee">
+                <i class='bx bxs-group' ></i>
+                <span class="text">Mes Employeés</span>
+            </a>
+        </li>
+        <li>
+            <a href="touslesrapport">
+                <i class='bx bxs-doughnut-chart' ></i>
+                <span class="text">Rapport Récu</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-calendar' ></i>
+                <span class="text">Template Rapport</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-group' ></i>
+                <span class="text">Team</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="#">
+                <i class='bx bxs-cog' ></i>
+                <span class="text">Settings</span>
+            </a>
+        </li>
+        <li>
+            <a href="/" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Deconexion</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+
+<!-- CONTENT -->
+<section id="content">
+    <!-- NAVBAR -->
+    <nav>
+        <i class='bx bx-menu' ></i>
+        <!-- <a href="#" class="nav-link">Categories</a> -->
+        <form action="#">
+            <div class="form-input">
+                <input type="search" placeholder="">
+                <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+            </div>
+        </form>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+        <a href="#" class="notification">
+            <i class='bx bxs-bell' ></i>
+            <span class="num">8</span>
+        </a>
+        <a href="#" class="profile">
+            <img src="images/Rs.png">
+        </a>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Tableau De Bord</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Tableau De Bord</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right' ></i></li>
+                    <li>
+                        <a class="active" href="#">Acceuil</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- <a href="#" class="btn-download">
+                <i class='bx bxs-cloud-download' ></i>
+                <span class="text">Download PDF</span>
+            </a> -->
+        </div>
+
+        <ul class="box-info">
+            <li>
+                <i class='bx bxs-calendar-check' ></i>
+                <span class="text"  >
+			    <h3 th:text="${reportCount}"></h3>
+			    <p>Rapports</p>
+			</span>
+			     </li>
+            <li>
+                <i class='bx bxs-group' ></i>
+                <span class="text">
+                    <h3 th:text="${userCount}"></h3>
+                    <p>Employeés</p>
+                </span>
+            </li>
+           
+        </ul>
+
+
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3 style="margin-left:19% ; background-color:red; border-radius: 15%">RAPPORTS RECENTS</h3>
+                    <i class='bx bx-search' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employeé</th>
+                            <th>Date récu</th>
+                            <th>Type de Rapport</th>
+                             <th> </th>
+                        </tr>
+                    </thead>
+				     <tbody>
+    <tr th:each="report : ${reports}">
+        <td>
+            <p th:text="${report.name}"></p>
+        </td>
+<td th:text="${#dates.format(report.creationDate, 'yyyy-MM-dd')}"></td>
+        <td>
+		            <span th:class="${report.reportType == 'MONTHLY' ? 'status blue' : (report.reportType == 'WEEKLY' ? 'status yellow' : 'status green')}">
+		    <span th:text="${report.reportType}"></span>
+		</span>
+        </td>
+        <td>
+        <a  class="btn btn-sm btn-secondary" th:href="@{/adminview/{id}(id=${report.id})}">
+             <i class="fas fa-eye" style="color: green"></i>
+			</a>
+		</td>
+    </tr>
+</tbody>
+
+                </table>
+            </div>
+            <div class="todo" style=" background-color:grey">
+		    <div class="head">
+                    <h3 style="margin-left:30% ; background-color:red; border-radius: 15%">A FAIRE</h3>
+		        <i class='bx bx-plus' id="addTodoButton"></i>
+		        <i class='bx bx-filter'></i>
+		    </div>
+		    <ul class="todo-list" id="todoList">
+		        <!-- Existing todo items -->
+		    </ul>
+		    <div id="addTodoForm" style="display: none;">
+		        <form id="todoForm">
+		            <input type="text" id="todoInput" placeholder="Entrer une tache" required>
+		            <button type="submit">Ajouté</button>
+		        </form>
+		    </div>
+		</div>
+        </div>
+    </main>
+    <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+<script src="style/admin.js"></script>
+
+
+  
+</body>
+</html>

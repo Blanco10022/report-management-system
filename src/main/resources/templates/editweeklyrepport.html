@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/style/index.css">
+	<link rel="stylesheet" type="text/css" href="/style/home.css">
+	<script src="/style/home.js"></script>
+	<script src="/style/toggle.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src=https://kit.fontawesome.com/35c8510a19.js crossorigin="anonymous"></script>
+
+
+
+	<title>MODIFIE RAPPORT</title>
+
+	<style>
+	</style>
+
+	<header>
+		<div class="wrapper">
+
+
+			<div class="sidebar">
+				<ul>
+
+					<div class="logo" style="width: 18%;">
+
+
+
+						<img src="/images/logo2.png" alt="Logo">
+					</div>
+					<!-- <li><a href="#"><i class="fas fa-home"></i> Home </a></li> -->
+					<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+					<li><a href="/user/"><i class="fas fa-plus"></i>Creé
+							Rapport</a></li>
+
+					<li><a href="/list"><i class="fas fa-chart-simple" style="padding-top: 19px;"></i>Rapport
+							envoyés</a></li>
+					<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+					<li><a href="/weeklylist"><i class="fas fa-file"></i>Rapport Hebdo</a></li>
+					<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+					<li><a href="/monthlylist"><i class="fas fa-file"></i>Rapport Mensuel</a></li>
+					<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+					<li><a href="#"><i class="fas fa-file-alt"></i>Brouillons</a></li>
+					<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+					<li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+					<li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Deconnexion</a></li>
+
+					<!-- <li><a href="#"><i class="fas fa-right-to-bracket"></i>Login</a></li>
+            <li><a href="#"><i class="fas fa-user-plus"></i>Register</a></li> -->
+				</ul>
+
+			</div>
+
+		</div>
+
+	</header>
+</head>
+
+<body>
+
+
+
+	<div class="container">
+		<form th:action="@{/updateweek}" method="post" th:object="${weeklylist}">
+
+			<input type="hidden" th:value="${weeklylist?.id ?: 'Default ID'}" name="id">
+
+			<div id="title0" class="contrle" style="display: flex; align-items: center;">
+				<input type="text" name="unite" class="textfield" style="margin-right: 10px;" placeholder="Unité"
+					th:if="${weeklylist.unite != null}" th:value="${weeklylist.unite}">
+				<select class="dropdownlist" style="margin-right: 10px;" name="month">
+					<option value="mois" th:selected="${weeklylist.month == 'mois'}">mois</option>
+					<option value="Janvier" th:selected="${weeklylist.month == 'Janvier'}">Janvier</option>
+					<option value="Fevrier" th:selected="${weeklylist.month == 'Fevrier'}">Fevrier</option>
+					<option value="Mars" th:selected="${weeklylist.month == 'Mars'}">Mars</option>
+					<option value="Avril" th:selected="${weeklylist.month == 'Avril'}">Avril</option>
+					<option value="Mais" th:selected="${weeklylist.month == 'Mais'}">Mais</option>
+					<option value="Juin" th:selected="${weeklylist.month == 'Juin'}">Juin</option>
+					<option value="Juillet" th:selected="${weeklylist.month == 'Juillet'}">Juillet</option>
+					<option value="Aout" th:selected="${weeklylist.month == 'Aout'}">Aout</option>
+					<option value="Septembre" th:selected="${weeklylist.month == 'Septembre'}">Septembre</option>
+					<option value="Octobre" th:selected="${weeklylist.month == 'Octobre'}">Octobre</option>
+					<option value="Novembre" th:selected="${weeklylist.month == 'Novembre'}">Novembre</option>
+					<option value="Decembre" th:selected="${weeklylist.month == 'Decembre'}">Decembre</option>
+				</select>
+				<input type="text" class="textfield" placeholder="Enter Name" style="width: 600px;" name="name"
+					th:value="${weeklylist.name}">
+			</div>
+
+			<div id="title" class="contrle"
+				style="padding-left: 13px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+				Contrôle
+				<button type="button" class="toggle-btn">
+					<i class="fas fa-chevron-down"></i>
+				</button>
+				<button type="button" style="margin-left: 651px; white-space: nowrap;" class="add-button">+
+					Nouvelle Entré</button>
+			</div>
+
+			<div class="user-forms" style="margin-top: 15px;">
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">PLANIFIE?</div>
+						<select class="dropdown" name="controlePlanifie">
+							<option value="oui" th:selected="${weeklylist.controlePlanifie == 'oui'}">OUI</option>
+							<option value="non" th:selected="${weeklylist.controlePlanifie == 'non'}">NON</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">STATUT ACTIVITES</div>
+						<input type="text" class="input-field" name="controleStatutActivites"
+							placeholder="Entrer le statut" th:value="${weeklylist.controleStatutActivites}" />
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">TACHES</div>
+						<div class="textarea-container">
+							<textarea class="textarea-field" name="controleTaches" placeholder="Entrer la Tache"
+								th:placeholder="${weeklylist.controleTaches}"
+								th:text="${weeklylist.controleTaches}"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">NOMBRE/TOTAL</div>
+						<input type="number" class="input-field" name="controleNombreTotal"
+							placeholder="Entre le nombre" th:value="${weeklylist.controleNombreTotal}" />
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">STATUT TACHES</div>
+						<select class="dropdown" name="controleStatutTaches">
+							<option value=""></option>
+							<option value="Exécuté" th:selected="${weeklylist.controleStatutTaches == 'Exécuté'}">
+								Exécuté</option>
+							<option value="Non-Exécuté"
+								th:selected="${weeklylist.controleStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+							<option value="En cours" th:selected="${weeklylist.controleStatutTaches == 'En cours'}">En
+								cours</option>
+							<!-- Add more options here -->
+						</select>
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">DATE BUTOIR</div>
+						<input type="date" class="input-field" name="controleDateButoir"
+							th:value="${weeklylist.controleDateButoir}" />
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">STATUT DELAI</div>
+						<select class="dropdown" name="controleStatutDelai">
+							<option value="" th:selected="${weeklylist.controleStatutDelai == ''}"></option>
+							<option value="Délai Dépassé"
+								th:selected="${weeklylist.controleStatutDelai == 'Délai Dépassé'}">Délai Dépassé
+							</option>
+							<option value="En cours" th:selected="${weeklylist.controleStatutDelai == 'En cours'}">En
+								cours</option>
+							<!-- Add more options here -->
+						</select>
+					</div>
+				</div>
+
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">OBSERVATION</div>
+						<div class="textarea-container">
+							<textarea class="textarea-field" placeholder="Entre observation" name="controleObservation"
+								th:text="${weeklylist.controleObservation}"></textarea>
+						</div>
+					</div>
+
+				</div>
+			</div>
+	</div>
+	</div>
+
+
+
+	<div id="title2" class="contrle"
+		style="padding-left: 13px; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Maintenance
+		<button type="button" class="toggle-btn2">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 599px; white-space: nowrap;" class="add-button2">+ Nouvelle
+			Entré</button>
+	</div>
+	<div class="user-forms2" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="input-section">
+					<div class="input-container">
+						<div class="heading">PLANIFIE?</div>
+						<select class="dropdown" name="maintenancePlanifie">
+							<option value="oui" th:selected="${weeklylist.maintenancePlanifie == 'oui'}">OUI</option>
+							<option value="non" th:selected="${weeklylist.maintenancePlanifie == 'non'}">NON</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field" placeholder="Entrer le statut" name="maintenanceStatutActivites"
+					th:value="${weeklylist.maintenanceStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" name="maintenanceTaches" placeholder="Entrer la Tache"
+						th:text="${weeklylist.maintenanceTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field" placeholder="Entre le nombre" name="maintenanceNombreTotal"
+					th:value="${weeklylist.maintenanceNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="maintenanceStatutTaches">
+					<option value="" th:selected="${weeklylist.maintenanceStatutTaches == ''}"></option>
+					<option value="Exécuté" th:selected="${weeklylist.maintenanceStatutTaches == 'Exécuté'}">Exécuté
+					</option>
+					<option value="Non-Exécuté" th:selected="${weeklylist.maintenanceStatutTaches == 'Non-Exécuté'}">
+						Non-Exécuté</option>
+					<option value="En cours" th:selected="${weeklylist.maintenanceStatutTaches == 'En cours'}">En cours
+					</option>
+					<!-- Add more options here -->
+				</select>
+
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="maintenanceDateButoir"
+					th:value="${weeklylist.maintenanceDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="maintenanceStatutDelai">
+					<option value=""></option>
+					<option value="Délai Dépassé" th:selected="${weeklylist.maintenanceStatutDelai == 'Délai Dépassé'}">
+						Délai Dépassé</option>
+					<option value="En cours" th:selected="${weeklylist.maintenanceStatutDelai == 'En cours'}">En cours
+					</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation" name="maintenanceObservation"
+						th:text="${weeklylist.maintenanceObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	</div>
+
+	<div id="title3" class="contrle"
+		style="padding-left: 13px; white-space: nowrap; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Contribution dans les Projets
+		<button type="button" class="toggle-btn3">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 396px; white-space: nowrap;" class="add-button3">+ Nouvelle
+			Entré</button>
+	</div>
+
+	<div class="user-forms3" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="contributionProjetsPlanifie"
+					th:value="${weeklylist.contributionProjetsPlanifie}">
+					<option value="oui" th:selected="${weeklylist.contributionProjetsPlanifie == 'oui'}">OUI</option>
+					<option value="non" th:selected="${weeklylist.contributionProjetsPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field" placeholder="Entrer le statut"
+					name="contributionProjetsStatutActivites"
+					th:value="${weeklylist.contributionProjetsStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache" name="contributionProjetsTaches"
+						th:text="${weeklylist.contributionProjetsTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field" placeholder="Entre le nombre"
+					name="contributionProjetsNombreTotal" th:value="${weeklylist.contributionProjetsNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="contributionProjetsStatutTaches"
+					th:value="${weeklylist.contributionProjetsStatutTaches}">
+					<option value="" th:selected="${weeklylist.contributionProjetsStatutTaches == ''}"></option>
+					<option value="Exécuté" th:selected="${weeklylist.contributionProjetsStatutTaches == 'Exécuté'}">
+						Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${weeklylist.contributionProjetsStatutTaches == 'Non-Exécuté'}">Non-Exécuté
+					</option>
+					<option value="En cours" th:selected="${weeklylist.contributionProjetsStatutTaches == 'En cours'}">
+						En cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="contributionProjetsDateButoir"
+					th:value="${weeklylist.contributionProjetsDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="contributionProjetsStatutDelai"
+					th:value="${weeklylist.contributionProjetsStatutDelai}">
+					<option value="" th:selected="${weeklylist.contributionProjetsStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${weeklylist.contributionProjetsStatutDelai == 'Délai Dépassé'}">Délai Dépassé
+					</option>
+					<option value="En cours" th:selected="${weeklylist.contributionProjetsStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation"
+						name="contributionProjetsObservation"
+						th:text="${weeklylist.contributionProjetsObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="title4" class="contrle"
+		style="padding-left: 13px; white-space: nowrap;; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Support Utilisateur
+		<button type="button" class="toggle-btn4">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 519px; white-space: nowrap;" class="add-button4">+ Nouvelle
+			Entré</button>
+	</div>
+
+	<div class="user-forms4" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="supportUtilisateursPlanifie"
+					th:value="${weeklylist.supportUtilisateursPlanifie}">
+					<option value="oui" th:selected="${weeklylist.supportUtilisateursPlanifie == 'oui'}">OUI</option>
+					<option value="non" th:selected="${weeklylist.supportUtilisateursPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field" placeholder="Entrer le statut"
+					name="supportUtilisateursStatutActivites"
+					th:value="${weeklylist.supportUtilisateursStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache" name="supportUtilisateursTaches"
+						th:text="${weeklylist.supportUtilisateursTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field" placeholder="Entre le nombre"
+					name="supportUtilisateursNombreTotal" th:value="${weeklylist.supportUtilisateursNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="supportUtilisateursStatutTaches"
+					th:value="${weeklylist.supportUtilisateursStatutTaches}">
+					<option value="" th:selected="${weeklylist.supportUtilisateursStatutTaches == ''}"></option>
+					<option value="Exécuté" th:selected="${weeklylist.supportUtilisateursStatutTaches == 'Exécuté'}">
+						Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${weeklylist.supportUtilisateursStatutTaches == 'Non-Exécuté'}">Non-Exécuté
+					</option>
+					<option value="En cours" th:selected="${weeklylist.supportUtilisateursStatutTaches == 'En cours'}">
+						En cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="supportUtilisateursDateButoir"
+					th:value="${weeklylist.supportUtilisateursDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="supportUtilisateursStatutDelai"
+					th:value="${weeklylist.supportUtilisateursStatutDelai}">
+					<option value="" th:selected="${weeklylist.supportUtilisateursStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${weeklylist.supportUtilisateursStatutDelai == 'Délai Dépassé'}">Délai Dépassé
+					</option>
+					<option value="En cours" th:selected="${weeklylist.supportUtilisateursStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation"
+						name="supportUtilisateursObservation"
+						th:text="${weeklylist.supportUtilisateursObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="title5" class="contrle"
+		style="padding-left: 13px; white-space: nowrap; margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Support Partenaires
+		<button type="button" class="toggle-btn5">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 516px; white-space: nowrap;" class="add-button5">+ Nouvelle
+			Entrée</button>
+	</div>
+
+	<div class="user-forms5" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="heading">PLANIFIE?</div>
+			<select class="dropdown" name="supportPartenairesPlanifie"
+				th:value="${weeklylist.supportPartenairesPlanifie}">
+				<option value="oui" th:selected="${weeklylist.supportPartenairesPlanifie == 'oui'}">OUI</option>
+				<option value="non" th:selected="${weeklylist.supportPartenairesPlanifie == 'non'}">NON</option>
+			</select>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field" placeholder="Entrer le statut"
+					name="supportPartenairesStatutActivites"
+					th:value="${weeklylist.supportPartenairesStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache" name="supportPartenairesTaches"
+						th:text="${weeklylist.supportPartenairesTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field" placeholder="Entre le nombre"
+					name="supportPartenairesNombreTotal" th:value="${weeklylist.supportPartenairesNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="supportPartenairesStatutTaches"
+					th:value="${weeklylist.supportPartenairesStatutTaches}">
+					<option value="" th:selected="${weeklylist.supportPartenairesStatutTaches == ''}"></option>
+					<option value="Exécuté" th:selected="${weeklylist.supportPartenairesStatutTaches == 'Exécuté'}">
+						Exécuté</option>
+					<option value="Non-Exécuté"
+						th:selected="${weeklylist.supportPartenairesStatutTaches == 'Non-Exécuté'}">Non-Exécuté</option>
+					<option value="En cours" th:selected="${weeklylist.supportPartenairesStatutTaches == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="supportPartenairesDateButoir"
+					th:value="${weeklylist.supportPartenairesDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="supportPartenairesStatutDelai"
+					th:value="${weeklylist.supportPartenairesStatutDelai}">
+					<option value="" th:selected="${weeklylist.supportPartenairesStatutDelai == ''}"></option>
+					<option value="Délai Dépassé"
+						th:selected="${weeklylist.supportPartenairesStatutDelai == 'Délai Dépassé'}">Délai Dépassé
+					</option>
+					<option value="En cours" th:selected="${weeklylist.supportPartenairesStatutDelai == 'En cours'}">En
+						cours</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer observation"
+						name="supportPartenairesObservation"
+						th:text="${weeklylist.supportPartenairesObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+	<div id="title6" class="contrle"
+		style="margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Reporting
+		<button type="button" class="toggle-btn6">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 646px; white-space: nowrap;" class="add-button6">+ Nouvelle
+			Entrée</button>
+	</div>
+
+	<div class="user-forms6" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="reportingPlanifie" th:value="${weeklylist.reportingPlanifie}">
+					<option value="oui" th:selected="${weeklylist.reportingPlanifie == 'oui'}">OUI</option>
+					<option value="non" th:selected="${weeklylist.reportingPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field" placeholder="Entrer le statut" name="reportingStatutActivites"
+					th:value="${weeklylist.reportingStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache" name="reportingTaches"
+						th:text="${weeklylist.reportingTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field" placeholder="Entre le nombre" name="reportingNombreTotal"
+					th:value="${weeklylist.reportingNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="reportingStatutTaches" th:value="${weeklylist.reportingStatutTaches}">
+					<option value="" th:selected="${weeklylist.reportingStatutTaches == ''}"></option>
+					<option value="Exécuté" th:selected="${weeklylist.reportingStatutTaches == 'Exécuté'}">Exécuté
+					</option>
+					<option value="Non-Exécuté" th:selected="${weeklylist.reportingStatutTaches == 'Non-Exécuté'}">
+						Non-Exécuté</option>
+					<option value="En cours" th:selected="${weeklylist.reportingStatutTaches == 'En cours'}">En cours
+					</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="reportingDateButoir"
+					th:value="${weeklylist.reportingDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="reportingStatutDelai" th:value="${weeklylist.reportingStatutDelai}">
+					<option value="" th:selected="${weeklylist.reportingStatutDelai == ''}"></option>
+					<option value="Délai Dépassé" th:selected="${weeklylist.reportingStatutDelai == 'Délai Dépassé'}">
+						Délai Dépassé</option>
+					<option value="En cours" th:selected="${weeklylist.reportingStatutDelai == 'En cours'}">En cours
+					</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer observation" name="reportingObservation"
+						th:text="${weeklylist.reportingObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	</div>
+
+
+	<div id="title7" class="contrle"
+		style="margin-top: 30px; margin-left: 170px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">
+		Autres
+		<button type="button" class="toggle-btn7">
+			<i class="fas fa-chevron-down"></i>
+		</button>
+		<button type="button" style="margin-left: 684px; white-space: nowrap;" class="add-button7">+ Nouvelle
+			Entrée</button>
+	</div>
+
+	<div class="user-forms7" style="margin-top: 15px; margin-left: 170px;">
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">PLANIFIE?</div>
+				<select class="dropdown" name="autresPlanifie" th:value="${weeklylist.autresPlanifie}">
+					<option value="oui" th:selected="${weeklylist.autresPlanifie == 'oui'}">OUI</option>
+					<option value="non" th:selected="${weeklylist.autresPlanifie == 'non'}">NON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT ACTIVITES</div>
+				<input type="text" class="input-field" placeholder="Entrer le statut" name="autresStatutActivites"
+					th:value="${weeklylist.autresStatutActivites}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">TACHES</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entrer la Tache" name="autresTaches"
+						th:text="${weeklylist.autresTaches}"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">NOMBRE/TOTAL</div>
+				<input type="number" class="input-field" placeholder="Entre le nombre" name="autresNombreTotal"
+					th:value="${weeklylist.autresNombreTotal}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT TACHES</div>
+				<select class="dropdown" name="autresStatutTaches" th:value="${weeklylist.autresStatutTaches}">
+					<option value="" th:selected="${weeklylist.autresStatutTaches == ''}"></option>
+					<option value="Exécuté" th:selected="${weeklylist.autresStatutTaches == 'Exécuté'}">Exécuté</option>
+					<option value="Non-Exécuté" th:selected="${weeklylist.autresStatutTaches == 'Non-Exécuté'}">
+						Non-Exécuté</option>
+					<option value="En cours" th:selected="${weeklylist.autresStatutTaches == 'En cours'}">En cours
+					</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">DATE BUTOIR</div>
+				<input type="date" class="input-field" name="autresDateButoir"
+					th:value="${weeklylist.autresDateButoir}" />
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">STATUT DELAI</div>
+				<select class="dropdown" name="autresStatutDelai" th:value="${weeklylist.autresStatutDelai}">
+					<option value="" th:selected="${weeklylist.autresStatutDelai == ''}"></option>
+					<option value="Délai Dépassé" th:selected="${weeklylist.autresStatutDelai == 'Délai Dépassé'}">Délai
+						Dépassé</option>
+					<option value="En cours" th:selected="${weeklylist.autresStatutDelai == 'En cours'}">En cours
+					</option>
+					<!-- Add more options here -->
+				</select>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<div class="input-container">
+				<div class="heading">OBSERVATION</div>
+				<div class="textarea-container">
+					<textarea class="textarea-field" placeholder="Entre observation" name="autresObservation"
+						th:text="${weeklylist.autresObservation}"></textarea>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+	<input type="submit" value="METRE A JOUR" id="submit" class="btn solid" />
+	</form>
+	</div>
+	</div>
+	</div>
+
+
+	<script>
+
+		$(document).ready(function () {
+
+
+			// Hide all content panels by default
+			//$('.user-forms').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+
+
+			});
+		});
+
+		$(document).ready(function () {
+			// Hide all content panels by default
+			$('.user-forms2').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn2').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms2').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function () {
+			// Hide all content panels by default
+			$('.user-forms3').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn3').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms3').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function () {
+			// Hide all content panels by default
+			$('.user-forms4').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn4').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms4').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function () {
+			// Hide all content panels by default
+			$('.user-forms5').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn5').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms5').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function () {
+			// Hide all content panels by default
+			$('.user-forms6').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn6').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms6').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+		$(document).ready(function () {
+			// Hide all content panels by default
+			$('.user-forms7').hide();
+
+			// Add click event listener to toggle button
+			$('.toggle-btn7').click(function () {
+				// Toggle visibility of content panel
+				$(this).parent().siblings('.user-forms7').slideToggle();
+
+				// Toggle icon
+				$(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+			});
+		});
+
+
+	</script>
+
+</body>
+
+</html>

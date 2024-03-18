@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/35c8510a19.js" crossorigin="anonymous"></script>
+  <title>liste De Tous Rapports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="path/to/jquery-x.x.x.min.js"></script>
+  <!-- My CSS -->
+	<link rel="stylesheet" type="text/css" href="/style/admin.css">
+	
+	
+
+  <style>
+
+
+
+
+
+main.table {
+    width: 82vw;
+    height: 96vh;
+    background-color: #fff5;
+
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+     margin-left: 1%; /* Added */
+}
+
+.table__header {
+    width: 100%;
+    height: 8%;
+    background-color: grey;
+    padding: .8rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+   
+}
+
+
+.table__body {
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+  
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+.table__body::-webkit-scrollbar{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color:  rgb(59, 64, 64);
+    cursor: pointer;
+    color:white;
+    text-transform: capitalize;
+   
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+  
+}
+
+tbody tr.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+
+.sidebar {
+   top:0px; 
+    margin-top:15px;
+}
+
+#th
+{
+   background-color:red;
+   padding-left: 40%; 
+   font-size: 150%; 
+   border-bottom: 1px solid #c00;
+   color:#fff ;
+   
+
+}
+   
+
+  </style>
+</head>
+<body>
+  
+  
+    <!-- Your main content goes here -->
+ <!-- SIDEBAR -->
+ <section id="sidebar">
+    <a href="" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">AdminHub</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="active">
+            <a href="/admindash">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Tableau De Bord</span>
+            </a>
+        </li>
+        <li>
+            <a href="/employee">
+                <i class='bx bxs-group' ></i>
+                <span class="text">Mes Employeés</span>
+            </a>
+        </li>
+        <li>
+            <a href="/touslesrapport">
+                <i class='bx bxs-doughnut-chart' ></i>
+                <span class="text">Rapport Récu</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-calendar' ></i>
+                <span class="text">Template Rapport</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-group' ></i>
+                <span class="text">Team</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="#">
+                <i class='bx bxs-cog' ></i>
+                <span class="text">Settings</span>
+            </a>
+        </li>
+        <li>
+            <a href="/" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Deconexion</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+
+<!-- CONTENT -->
+<section id="content">
+    <!-- NAVBAR -->
+    <nav>
+        <i class='bx bx-menu' ></i>
+        <!-- <a href="#" class="nav-link">Categories</a> -->
+        <form action="#">
+            <div class="form-input">
+               
+                <button style="width:1px; background-color:gray"><i class='bx bx-search' ></i></button>
+            </div>
+        </form>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+        <a href="#" class="notification">
+            <i class='bx bxs-bell' ></i>
+            <span class="num">8</span>
+        </a>
+        <a href="#" class="profile">
+            <img src="/images/Rs.png">
+        </a>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+  
+      
+        <main class="table">
+        <section class="table__header">
+         <h1 style="padding-left:30%;">VISUALISATION DU RAPPORT</h1>
+        </section>
+        <section class="table__body">
+       
+    <table>
+    <thead>
+        <tr>
+            <th id="th" colspan="17">CONTROLE</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.controlePlanifie}"></td>
+            <td colspan="2" th:text="${reportview.controleStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.controleTaches}"></td>
+            <td colspan="2" th:text="${reportview.controleNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.controleStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.controleDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.controleStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.controleObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+<!-- Maintenance section -->
+<table>
+    <thead>
+        <tr>
+            <th id="th" colspan="17">MAINTENANCE</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.maintenancePlanifie}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceTaches}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.maintenanceObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Contribution dans les Projets section -->
+<table>
+    <thead>
+        <tr>
+            <th id="th" colspan="17" >CONTRIBUTION DANS LES PROJETS</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.contributionProjetsPlanifie}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsTaches}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.contributionProjetsObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Support Utilisateurs section -->
+<table>
+    <thead>
+        <tr>
+            <th id="th" colspan="17" >SUPPORT UTILISATEURS</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.supportUtilisateursPlanifie}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursTaches}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.supportUtilisateursObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Support Partenaires section -->
+<table>
+    <thead>
+        <tr>
+            <th id="th" colspan="17">SUPPORT PARTENAIRES</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.supportPartenairesPlanifie}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesTaches}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.supportPartenairesObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+<!-- Reporting section -->
+<table>
+    <thead>
+        <tr>
+            <th id="th" colspan="17">REPORTING</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.reportingPlanifie}"></td>
+            <td colspan="2" th:text="${reportview.reportingStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.reportingTaches}"></td>
+            <td colspan="2" th:text="${reportview.reportingNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.reportingStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.reportingDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.reportingStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.reportingObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- AUTRES section -->
+<table>
+    <thead>
+        <tr>
+            <th id="th"  colspan="17" >AUTRES</th>
+        </tr>
+        <tr>
+            <th colspan="2" style="white-space: nowrap;">PLANIFIE</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT ACTIVITES</th>
+            <th colspan="2" style="padding-right: 500px;max-width: 500px;">TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">NOMBRE/TOTAL</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT TACHES</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 30px;">DATE BUTOIR</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 20px;">STATUT DELAI</th>
+            <th colspan="2" style="white-space: nowrap;padding-right: 200px;max-width: 400px;">OBSERVATIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" th:text="${reportview.autresPlanifie}"></td>
+            <td colspan="2" th:text="${reportview.autresStatutActivites}"></td>
+            <td colspan="2" th:text="${reportview.autresTaches}"></td>
+            <td colspan="2" th:text="${reportview.autresNombreTotal}"></td>
+            <td colspan="2" th:text="${reportview.autresStatutTaches}"></td>
+            <td colspan="2" th:text="${reportview.autresDateButoir}"></td>
+            <td colspan="2" th:text="${reportview.autresStatutDelai}"></td>
+            <td colspan="2" th:text="${reportview.autresObservation}"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+                    
+             
+    </main>
+    <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+<script src="/style/admin.js"></script>
+
+  
+</body>
+</html>

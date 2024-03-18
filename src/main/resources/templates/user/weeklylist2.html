@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style/home.css">
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/35c8510a19.js" crossorigin="anonymous"></script>
+
+    <title>LIST RAPPORT</title>
+
+
+<style>
+       
+
+body {
+    min-height: 100vh;
+    background: url(images/html_table.jpg) center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main.table {
+    width: 82vw;
+    height: 90vh;
+    background-color: #fff5;
+
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+     margin-left: 18%; /* Added */
+}
+
+.table__header {
+    width: 100%;
+    height: 10%;
+    background-color: red;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.table__header .input-group input {
+    width: 200px;
+   border-radius: 2rem;
+    padding: 0 .5rem 0 .3rem;   
+    border: none;  
+    outline: none;
+     background-color: white;
+   
+}
+
+.table__body {
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+.table__body::-webkit-scrollbar{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color:  rgb(59, 64, 64);
+    cursor: pointer;
+    color:white;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+
+
+thead th.active,tbody td.active {
+    color: #6c00bd;
+}
+.sidebar {
+   top:0px; 
+    margin-top:15px;
+}
+ 
+    </style>
+<header>
+  <div class="wrapper">
+
+    
+    <div class="sidebar">
+        <ul>
+         
+          <div class="logo" style="width: 18%;">
+                 
+           
+            
+            <img src="/images/logo2.png" alt="Logo">
+          </div>
+            <!-- <li><a href="#"><i class="fas fa-home"></i> Home </a></li> -->
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li><a href="/user/"><i class="fas fa-plus"></i>Creé Rapport</a></li>
+            
+            <li><a href="list"><i class="fas fa-chart-simple" style="padding-top: 19px;"></i>Rapport envoyés</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li><a href=""><i class="fas fa-file" ></i>Rapport Hebdo</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li><a href="#"><i class="fas fa-file"></i>Rapport Mensuel</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li ><a href="#"><i class="fas fa-file-alt" ></i>Brouillons</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+            <li ><a href="/logout"><i class="fas fa-sign-out-alt" ></i>Deconnexion</a></li>
+           
+            <!-- <li><a href="#"><i class="fas fa-right-to-bracket"></i>Login</a></li>
+            <li><a href="#"><i class="fas fa-user-plus"></i>Register</a></li> -->
+        </ul>
+       
+    </div>
+   
+</div>
+
+</header>
+
+</head>
+
+<body>
+   <main class="table">
+        <section class="table__header">
+            <div class="input-group">
+               
+                <div class="input-group">
+                <input type="search" placeholder="Search...">
+                 </div>
+            </div>
+            
+        </section>
+        <section class="table__body">
+           
+            <table>
+                <thead>
+                    <tr>
+                        <th> Id</th>
+                        <th> DateButoir</th>
+                        <th> StatutTaches</th>
+                        <th> Taches</th>
+                        <th>Action</th>
+                        
+                        
+                    </tr>
+                </thead>
+        <tbody>
+            <tr th:each="e : ${weeklyReports}">
+                <td th:text="${e.id}" style="color:black;">1</td>
+                <td th:text="${e.controleDateButoir}"></td>
+                <td th:text="${e.controleStatutTaches}"></td>
+                <td th:text="${e.controleTaches}"></td>
+		    <td>
+			<a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${e.id})}">
+				<i class="fas fa-edit" style="color: blue"></i>
+			</a>
+			<a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${e.id})}">
+				<i class="fas fa-trash-alt" style="color: red"></i>
+			</a>
+           </td>
+
+                  </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+<script>
+
+const search = document.querySelector('.input-group input'),
+table_rows = document.querySelectorAll('tbody tr'),
+table_headings = document.querySelectorAll('thead th');
+
+//1. Searching for specific data of HTML table
+search.addEventListener('input', searchTable);
+
+function searchTable() {
+table_rows.forEach((row, i) => {
+    let table_data = row.textContent.toLowerCase(),
+        search_data = search.value.toLowerCase();
+
+    row.classList.toggle('hide', table_data.indexOf(search_data) < 0);
+    row.style.setProperty('--delay', i / 25 + 's');
+})
+
+document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
+    visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
+});
+}
+
+</script>
+</body>
+
+
+</html>

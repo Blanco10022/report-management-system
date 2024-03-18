@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/webjars/font-awesome/{font-awesome-version}/css/all.min.css">
+  
+   <link rel="stylesheet" type="text/css" href="/style/index.css">
+      <link rel="stylesheet" type="text/css" href="/style/home.css">
+   <script src="/style/home.js"></script>
+      <script src="/style/toggle.js"></script>
+   
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src=https://kit.fontawesome.com/35c8510a19.js crossorigin="anonymous"></script>
+  
+
+  
+  <title>RAPPORT</title>
+
+  <style>
+    
+
+  </style>
+
+<header>
+  <div class="wrapper">
+
+    
+    <div class="sidebar">
+        <ul>
+         
+          <div class="logo" style="width: 18%;">
+                 
+           
+            
+            <img src="/images/logo2.png" alt="Logo">
+          </div>
+            <!-- <li><a href="#"><i class="fas fa-home"></i> Home </a></li> -->
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li><a href="/user/"><i class="fas fa-plus"></i>Creé Rapport</a></li>
+            
+            <li><a href="/list"><i class="fas fa-chart-simple" style="padding-top: 19px;"></i>Rapport envoyés</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li><a href="/weeklylist"><i class="fas fa-file" ></i>Rapport Hebdo</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li><a href="/monthlylist"><i class="fas fa-file"></i>Rapport Mensuel</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+            <li ><a href="#"><i class="fas fa-file-alt" ></i>Brouillons</a></li>
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+            <li class="empty-list-item"><a href="#"><i class="fas fa-"></i></a></li>
+
+            <li ><a href="/logout"><i class="fas fa-sign-out-alt" ></i>Deconnexion</a></li>
+           
+            <!-- <li><a href="#"><i class="fas fa-right-to-bracket"></i>Login</a></li>
+            <li><a href="#"><i class="fas fa-user-plus"></i>Register</a></li> -->
+        </ul>
+       
+    </div>
+   
+</div>
+
+</header>
+</head>
+<body>
+
+ 
+
+ <div class="container">
+  <form action="createrapport" method="post" enctype="multipart/form-data">
+       
+
+    <div id="title0" class="contrle" style="display: flex; align-items: center;">
+    
+      <input type="text"  name="unite" class="textfield" style="margin-right: 10px;" placeholder="Unité" >
+      <select class="dropdownlist" style="margin-right: 10px;" name="month">
+        <option value="mois">mois</option>
+        <option value="Janvier">Janvier</option>
+        <option value="Fevrier">Fevrier</option>
+        <option value="Mars">Mars</option>
+        <option value="Avril">Avril</option>
+        <option value="Mais">Mais</option>
+        <option value="Juin">Juin</option>
+        <option value="Juillet">Juillet</option>
+        <option value="Aout">Aout</option>
+        <option value="Septembre">Septembre</option>
+        <option value="Octobre">Octobre</option>
+        <option value="Novembre">Novembre</option>
+        <option value="Decembre">Decembre</option>
+      </select>
+      
+      <input type="text" class="textfield" placeholder="Enter Name" style="width: 600PX;" name="name">
+      
+
+    </div>
+    
+    
+     <div id="title" class="contrle" style="padding-left: 13px; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Contrôle 
+     <button type="button" class="toggle-btn"><i class="fas fa-chevron-down"></i></button> 
+     
+     <button  type="button" style="margin-left: 651px; white-space: nowrap;" class="add-button">+ Nouvelle Entré</button></div>
+	
+	<div class="user-forms" style="margin-top: 15px;">
+	  <div class="input-section">
+	    <div class="input-container">
+	      <div class="heading">PLANIFIE?</div>
+	      <select class="dropdown" name="controlePlanifie">
+	        <option value="oui">OUI</option>
+	        <option value="non">NON</option>
+	      </select>
+	    </div>
+	  </div>
+	
+	  <div class="input-section">
+	    <div class="input-container">
+	      <div class="heading">STATUT ACTIVITES</div>
+	      <input type="text" class="input-field" name="controleStatutActivites" placeholder="Entrer le statut" />
+	    </div>
+	  </div>
+	
+	  <div class="input-section">
+	    <div class="input-container">
+	      <div class="heading">TACHES</div>
+	      <div class="textarea-container">
+	        <textarea class="textarea-field" name="controleTaches" placeholder="Entrer la Tache"></textarea>
+	      </div>
+	    </div>
+	  </div>
+	
+	  <div class="input-section">
+	    <div class="input-container">
+	      <div class="heading">NOMBRE/TOTAL</div>
+	      <input type="number" class="input-field" name="controleNombreTotal" placeholder="Entre le nombre" />
+	    </div>
+	  </div>
+	
+	  <div class="input-section">
+	    <div class="input-container">
+	      <div class="heading">STATUT TACHES</div>
+	      <select class="dropdown" name="controleStatutTaches">
+	        <option value=""></option>
+	        <option value="Exécuté">Exécuté</option>
+	        <option value="Non-Exécuté">Non-Exécuté</option>
+	        <option value="En cours">En cours</option>
+	        <!-- Add more options here -->
+	      </select>
+	    </div>
+	  </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field"  name = "controleDateButoir"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown" name="controleStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="controleObservation"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+     </div>
+    
+       
+       
+     <div id="title2" class="contrle" style=" padding-left: 13px; margin-top: 30px; margin-left: 170px;  font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Maintenance
+     
+      <button type="button" class="toggle-btn2"><i class="fas fa-chevron-down"></i></button> 
+      
+     <button type="button" style="margin-left: 599px; white-space: nowrap;" class="add-button2">+ Nouvelle Entré</button></div>
+        
+        <div class="user-forms2" style="margin-top: 15px;margin-left: 170px;">
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">PLANIFIE?</div>
+              <select class="dropdown" name="maintenancePlanifie">
+                <option value="oui">OUI</option>
+                <option value="non">NON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT ACTIVITES</div>
+              <input type="text" class="input-field" placeholder="Entrer le statut" name="maintenanceStatutActivites"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">TACHES</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" name="maintenanceTaches" placeholder="Entrer la Tache"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">NOMBRE/TOTAL</div>
+              <input type="number" class="input-field" placeholder="Entre le nombre" name="maintenanceNombreTotal"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT TACHES</div>
+              <select class="dropdown" name="maintenanceStatutTaches">
+                <option value=></option>
+                <option value="Exécuté">Exécuté</option>
+                <option value="Non-Exécuté">Non-Exécuté</option>
+                <option value="En cours">En cours</option> 
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field" name="maintenanceDateButoir"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown"name="maintenanceStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="maintenanceObservation"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+     </div>
+    </div>
+ 
+     <div id="title3" class="contrle" style="padding-left: 13px; white-space: nowrap;  margin-top: 30px; margin-left: 170px;  font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Contribution dans les Projets
+     
+     <button type="button" class="toggle-btn3"><i class="fas fa-chevron-down"></i></button> 
+     
+     <button type="button" style="margin-left: 396px; white-space: nowrap;" class="add-button3">+ Nouvelle Entré</button></div>
+        
+        <div class="user-forms3" style="margin-top: 15px;margin-left: 170px;">
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">PLANIFIE?</div>
+              <select class="dropdown" name="contributionProjetsPlanifie">
+                <option value="oui">OUI</option>
+                <option value="non">NON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT ACTIVITES</div>
+              <input type="text" class="input-field" placeholder="Entrer le statut" name="contributionProjetsStatutActivites"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">TACHES</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entrer la Tache" name="contributionProjetsTaches"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">NOMBRE/TOTAL</div>
+              <input type="number" class="input-field" placeholder="Entre le nombre" name="contributionProjetsNombreTotal"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT TACHES</div>
+              <select class="dropdown" name="contributionProjetsStatutTaches">
+                <option value=""></option>
+                <option value="Exécuté">Exécuté</option>
+                <option value="Non-Exécuté">Non-Exécuté</option>
+                <option value="En cours">En cours</option> 
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field" name="contributionProjetsDateButoir" />
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown" name="contributionProjetsStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="contributionProjetsObservation"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+         
+
+     <div id="title4" class="contrle" style="padding-left: 13px; white-space: nowrap;;    margin-top: 30px; margin-left: 170px;  font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Support Utilisateur
+     
+          <button type="button" class="toggle-btn4"><i class="fas fa-chevron-down"></i></button> 
+     
+     <button type="button" style="margin-left: 519px; white-space: nowrap;" class="add-button4">+ Nouvelle Entré</button></div>
+        
+        <div class="user-forms4" style="margin-top: 15px;margin-left: 170px;">
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">PLANIFIE?</div>
+              <select class="dropdown" name="supportUtilisateursPlanifie">
+                <option value="oui">OUI</option>
+                <option value="non">NON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT ACTIVITES</div>
+              <input type="text" class="input-field" placeholder="Entrer le statut" name="supportUtilisateursStatutActivites"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">TACHES</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entrer la Tache" name="supportUtilisateursTaches"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">NOMBRE/TOTAL</div>
+              <input type="number" class="input-field" placeholder="Entre le nombre" name="supportUtilisateursNombreTotal" />
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT TACHES</div>
+              <select class="dropdown" name="supportUtilisateursStatutTaches">
+                <option value=""></option>
+                <option value="Exécuté">Exécuté</option>
+                <option value="Non-Exécuté">Non-Exécuté</option>
+                <option value="En cours">En cours</option> 
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field" name="supportUtilisateursDateButoir"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown" name="supportUtilisateursStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="supportUtilisateursObservation"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+     </div>
+     
+     
+
+     <div id="title5" class="contrle" style="padding-left:13px; white-space: nowrap;   margin-top: 30px; margin-left: 170px;  font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Support Partenaires
+               <button type="button" class="toggle-btn5"><i class="fas fa-chevron-down"></i></button> 
+     
+     
+     <button  type="button" style="margin-left: 516px; white-space: nowrap;" class="add-button5">+ Nouvelle Entré</button></div>
+        <div class="user-forms5" style="margin-top: 15px;margin-left: 170px;">
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">PLANIFIE?</div>
+              <select class="dropdown" name="supportPartenairesPlanifie">
+                <option value="oui">OUI</option>
+                <option value="non">NON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT ACTIVITES</div>
+              <input type="text" class="input-field" placeholder="Entrer le statut" name="supportPartenairesStatutActivites"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">TACHES</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entrer la Tache" name="supportPartenairesTaches"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">NOMBRE/TOTAL</div>
+              <input type="number" class="input-field" placeholder="Entre le nombre"  name ="supportPartenairesNombreTotal"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT TACHES</div>
+              <select class="dropdown" name="supportPartenairesStatutTaches">
+                <option value=""></option>
+                <option value="Exécuté">Exécuté</option>
+                <option value="Non-Exécuté">Non-Exécuté</option>
+                <option value="En cours">En cours</option> 
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field" name="supportPartenairesDateButoir"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown" name="supportPartenairesStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="supportPartenairesStatutDelai"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+     </div>
+     
+     
+
+     <div id="title6" class="contrle" style="margin-top: 30px; margin-left: 170px;  font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Reporting
+     
+                    <button type="button" class="toggle-btn6"><i class="fas fa-chevron-down"></i></button> 
+     
+     <button type ="button" style="margin-left: 646px; white-space: nowrap;" class="add-button6">+ Nouvelle Entré</button></div>
+     
+        <div class="user-forms6" style="margin-top: 15px;margin-left: 170px;">
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">PLANIFIE?</div>
+              <select class="dropdown" name="reportingPlanifie">
+                <option value="oui">OUI</option>
+                <option value="non">NON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT ACTIVITES</div>
+              <input type="text" class="input-field" placeholder="Entrer le statut"  name="reportingStatutActivites "/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">TACHES</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entrer la Tache" name="reportingTaches"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">NOMBRE/TOTAL</div>
+              <input type="number" class="input-field" placeholder="Entre le nombre" name="reportingNombreTotal" />
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT TACHES</div>
+              <select class="dropdown" name="reportingStatutTaches">
+                <option value=""></option>
+                <option value="Exécuté">Exécuté</option>
+                <option value="Non-Exécuté">Non-Exécuté</option>
+                <option value="En cours">En cours</option> 
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field"  name="reportingDateButoir"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown" name="reportingStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="reportingObservation";></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>      
+
+
+     <div id="title7" class="contrle" style="margin-top: 30px; margin-left: 170px;  font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; display: flex; align-items: center;">Autres
+                         <button type="button" class="toggle-btn7"><i class="fas fa-chevron-down"></i></button> 
+     
+     <button type="button"  style="margin-left: 684px; white-space: nowrap;" class="add-button7">+ Nouvelle Entré</button></div>
+        <div class="user-forms7" style="margin-top: 15px;margin-left: 170px;">
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">PLANIFIE?</div>
+              <select class="dropdown" name="autresPlanifie">
+                <option value="oui">OUI</option>
+                <option value="non">NON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT ACTIVITES</div>
+              <input type="text" class="input-field" placeholder="Entrer le statut" name = "autresStatutActivites"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">TACHES</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entrer la Tache" name="autresTaches"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">NOMBRE/TOTAL</div>
+              <input type="number" class="input-field" placeholder="Entre le nombre" name="autresNombreTotal"/>
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT TACHES</div>
+              <select class="dropdown" name="autresStatutTaches">
+                <option value=""></option>
+                <option value="Exécuté">Exécuté</option>
+                <option value="Non-Exécuté">Non-Exécuté</option>
+                <option value="En cours">En cours</option> 
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">DATE BUTOIR</div>
+              <input type="date" class="input-field" name ="autresDateButoir" />
+            </div>
+          </div>
+
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">STATUT DELAI</div>
+              <select class="dropdown" name="autresStatutDelai">
+                <option value=""></option>
+                <option value="Délai Dépassé">Délai Dépassé</option>
+                <option value="En cours">En cours</option>
+                <!-- <option value="option3">Option 3</option> -->
+                <!-- Add more options here -->
+              </select>
+            </div>
+          </div>
+          <div class="input-section">
+            <div class="input-container">
+              <div class="heading">OBSERVATION</div>
+              <div class="textarea-container">
+                <textarea class="textarea-field" placeholder="Entre observation" name="autresObservation"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+     </div>
+     
+      
+     <div class="form-group" style="margin-left: 160px; padding-top: 3%">
+    <label for="file">Document:</label>
+    <input type="file" class="form-control" id="file" name="file" accept=".doc, .docx, .xls, .xlsx, .pdf, .jpg, .jpeg, .png">
+  </div>
+    
+   
+     <hr>
+                                              <input type="submit" name="submitType"  value="SOUMETRE" id ="submit"class="btn solid" style="margin-left:168px"/>  
+                                              <input type="submit" name="submitType"  value="SoumetreRapportHebdo" id ="submit"class="btn solid"/>  
+                                               <input type="submit" name="submitType"  value="SoumetreRapportMensuel" id ="submit"class="btn solid" />  
+                                               
+                                               </form> 
+                                              
+     
+    </div>
+  
+</div>
+
+  <script>
+
+  $(document).ready(function() {
+
+	  
+    // Hide all content panels by default
+    //$('.user-forms').hide();
+
+    // Add click event listener to toggle button
+    $('.toggle-btn').click(function() {
+      // Toggle visibility of content panel
+      $(this).parent().siblings('.user-forms').slideToggle();
+
+      // Toggle icon
+      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+      
+   
+    });
+  });
+  
+  $(document).ready(function() {
+	    // Hide all content panels by default
+	    $('.user-forms2').hide();
+
+	    // Add click event listener to toggle button
+	    $('.toggle-btn2').click(function() {
+	      // Toggle visibility of content panel
+	      $(this).parent().siblings('.user-forms2').slideToggle();
+
+	      // Toggle icon
+	      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+	    });
+	  });
+  $(document).ready(function() {
+	    // Hide all content panels by default
+	    $('.user-forms3').hide();
+
+	    // Add click event listener to toggle button
+	    $('.toggle-btn3').click(function() {
+	      // Toggle visibility of content panel
+	      $(this).parent().siblings('.user-forms3').slideToggle();
+
+	      // Toggle icon
+	      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+	    });
+	  });
+  $(document).ready(function() {
+	    // Hide all content panels by default
+	    $('.user-forms4').hide();
+
+	    // Add click event listener to toggle button
+	    $('.toggle-btn4').click(function() {
+	      // Toggle visibility of content panel
+	      $(this).parent().siblings('.user-forms4').slideToggle();
+
+	      // Toggle icon
+	      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+	    });
+	  });
+  $(document).ready(function() {
+	    // Hide all content panels by default
+	    $('.user-forms5').hide();
+
+	    // Add click event listener to toggle button
+	    $('.toggle-btn5').click(function() {
+	      // Toggle visibility of content panel
+	      $(this).parent().siblings('.user-forms5').slideToggle();
+
+	      // Toggle icon
+	      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+	    });
+	  });
+  $(document).ready(function() {
+	    // Hide all content panels by default
+	    $('.user-forms6').hide();
+
+	    // Add click event listener to toggle button
+	    $('.toggle-btn6').click(function() {
+	      // Toggle visibility of content panel
+	      $(this).parent().siblings('.user-forms6').slideToggle();
+
+	      // Toggle icon
+	      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+	    });
+	  });
+  $(document).ready(function() {
+	    // Hide all content panels by default
+	    $('.user-forms7').hide();
+
+	    // Add click event listener to toggle button
+	    $('.toggle-btn7').click(function() {
+	      // Toggle visibility of content panel
+	      $(this).parent().siblings('.user-forms7').slideToggle();
+
+	      // Toggle icon
+	      $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+	    });
+	  });
+  
+  
+
+
+  </script>  
+
+</body>
+</html>
